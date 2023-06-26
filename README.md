@@ -35,7 +35,7 @@ Your task is to develop an API using Node.js for a product catalog management sy
 
 <hr>
 <strong>Diagram representing the final structure of the project:</strong> <br><br>
-<img src="https://github.com/githubanotaai/new-test-backend-nodejs/assets/52219768/d3895486-79d7-40cd-ae87-fbd6d6e48bfa"width="800" height="400">
+<img src="https://github.com/githubanotaai/new-test-backend-nodejs/assets/52219768/d3895486-79d7-40cd-ae87-fbd6d6e48bfa"width="800" height="500">
 <hr>
 
 <strong>Instructions</strong>
