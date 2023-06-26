@@ -1,8 +1,9 @@
-![image](https://github.com/githubanotaai/new-test-backend-nodejs/assets/52219768/49a60641-1ddc-4db7-bcaa-e728e03de3ba)
+
 <h1>Backend Analyst Candidate Test</h1>
 Dear developer,
 
 Welcome to the Backend Analyst Candidate Test. This test aims to assess your general knowledge and development speed. Below, you will find the details and requirements for this test.
+
 
 <strong>The Challenge</strong>
 
@@ -24,6 +25,18 @@ Your task is to develop an API using Node.js for a product catalog management sy
 - Implement a consumer that listens to catalog changes for a specific owner.
 - When the consumer receives a message, search the database for that owner's catalog, generate the catalog JSON, and publish it to an AWS S3 service bucket.
 
+<strong>You need to develop this test using the following technologies:</strong>
+
+- MongoDB for the database.
+- AWS SQS for the catalog change notifications.
+- AWS S3 for storing the catalog JSON.
+- Node.js for the backend.
+- Express.js as the web framework.
+
+<hr>
+<strong>Diagram representing the final structure of the project:</strong>
+![image](https://github.com/githubanotaai/new-test-backend-nodejs/assets/52219768/37f40154-915b-4940-b302-e37d1c58f4e8)
+
 <hr>
 
 <strong>Instructions</strong>
@@ -33,15 +46,6 @@ Your task is to develop an API using Node.js for a product catalog management sy
 - Update the README file with instructions on how to run your application.
 - Paste the branch name into the GUPY system and indicate the completion of the test.
 - Feel free to provide us with feedback regarding the test.
-<strong>You need to develop this test using the following technologies:</strong>
-
-- MongoDB for the database.
-- AWS SQS for the catalog change notifications.
-- AWS S3 for storing the catalog JSON.
-- Node.js for the backend.
-- Express.js as the web framework.
-  
-![image](https://github.com/githubanotaai/new-test-backend-nodejs/assets/52219768/37f40154-915b-4940-b302-e37d1c58f4e8)
 
 <strong>Our Evaluation Criteria</strong>
 We will assess the following aspects of your solution:
