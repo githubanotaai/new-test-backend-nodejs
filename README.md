@@ -34,8 +34,8 @@ Your task is to develop an API using Node.js for a product catalog management sy
 - Express.js as the web framework.
 
 <hr>
-<strong>Diagram representing the final structure of the project:</strong>
-<img src="https://github.com/githubanotaai/new-test-backend-nodejs/assets/52219768/d3895486-79d7-40cd-ae87-fbd6d6e48bfa"width="500" height="600">
+<strong>Diagram representing the final structure of the project:</strong> <br>
+<img src="https://github.com/githubanotaai/new-test-backend-nodejs/assets/52219768/d3895486-79d7-40cd-ae87-fbd6d6e48bfa"width="1000" height="1000">
 <hr>
 
 <strong>Instructions</strong>
