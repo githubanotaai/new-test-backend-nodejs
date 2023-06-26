@@ -1,4 +1,4 @@
-
+![image](https://github.com/githubanotaai/new-test-backend-nodejs/assets/52219768/49a60641-1ddc-4db7-bcaa-e728e03de3ba)
 <h1>Backend Analyst Candidate Test</h1>
 Dear developer,
 
@@ -40,6 +40,8 @@ Your task is to develop an API using Node.js for a product catalog management sy
 - AWS S3 for storing the catalog JSON.
 - Node.js for the backend.
 - Express.js as the web framework.
+  
+![image](https://github.com/githubanotaai/new-test-backend-nodejs/assets/52219768/37f40154-915b-4940-b302-e37d1c58f4e8)
 
 <strong>Our Evaluation Criteria</strong>
 We will assess the following aspects of your solution:
