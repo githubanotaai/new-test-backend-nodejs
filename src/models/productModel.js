@@ -6,7 +6,7 @@ const productSchema = new mongoose.Schema({
     description: String,
     price: Number,
     category: { type: mongoose.Schema.Types.ObjectId, ref: 'Category'},
-    owner: { type: String, default: uuidv4 },
+    ownerId: { type: String, default: uuidv4 },
 });
 
 const Product =  mongoose.model('Product', productSchema);
