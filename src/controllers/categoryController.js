@@ -1,16 +1,36 @@
-const Category = require('../models/categoryModel');
+const { CreateCategoryDTO, UpdateCategoryDTO } = require('../dtos/categoryDTO');
+const categoryService = require('../services/categoryService'); 
 
+const getAllCategories = async (req, res) => {
+    try {
+        const categories = await categoryService.getAllCategories();
+        res.status(200).json(categories);
+    } catch {
+        console.error(error);
+        res.status(500).json({ error: `Internal Server Error - ${error}`});
+    }
+}
+
+const getCategory = async (req, res) => {
+    try {
+        const { categoryId } = req.params; 
+        const category = await categoryService.getCategory(categoryId);
+        if (!updateCategory) {
+            return res.status(404).json({ error: 'Category not found'});
+        }
+        res.status(200).json(category);
+    } catch {
+        console.error(error);
+        res.status(500).json({ error: `Internal Server Error - ${error}`});
+    }
+}
 
 const createCategory = async (req, res) => {
-    try{
-        const { title, description, ownerId } = req.body; 
-        const category = new Category({
-            title,
-            description,
-            ownerId,
-        });    
+    try {
+        const categoryDTO = new CreateCategoryDTO( req.body ); 
 
-        const savedCategory = await category.save();
+        const savedCategory = await categoryService.createCategory(categoryDTO);
+
         res.status(201).json(savedCategory);
     } catch (error) {
         console.error(error);
@@ -21,20 +41,29 @@ const createCategory = async (req, res) => {
 const updateCategory = async (req, res) => {
     try {
         const { categoryId } = req.params; 
-        const { title, description, ownerId } = req.body;
 
-        const updatedCategory = await Category.findByIdAndUpdate(
-            categoryId,
-            {title, description, ownerId }, 
-            {new: true }
-        );
+        if (!req.body) {
+            return res.status(400).json({ error: 'Request body is missing' });
+        }
+        
+        const categoryDTO = new UpdateCategoryDTO(req.body);
+
+        if ( categoryId !== categoryDTO._id ) {
+            return res.status(400).json({ 
+                error: 'id doesnt match. ',
+                _id: categoryDTO._id,
+                categoryId: categoryId,
+            });
+        }
+
+        const updatedCategory = await categoryService.updateCategory(categoryId, categoryDTO)
 
         if (!updateCategory) {
             return res.status(404).json({ error: 'Category not found'});
         }
 
         res.json(updatedCategory);
-    } catch {
+    } catch (error){
         console.error(error);
         res.status(500).json({ error: `Internal Server Error - ${error}`});
     }
@@ -43,28 +72,25 @@ const updateCategory = async (req, res) => {
 const deleteCategory = async (req, res) => {
     try {
         const { categoryId } = req.params; 
-        const { title, description, ownerId } = req.body;
 
-        const updatedCategory = await Category.findByIdAndDelete(
-            categoryId,
-            {title, description, ownerId }, 
-            {new: true }
-        );
-
-        if (!updateCategory) {
-            return res.status(404).json({ error: 'Category not found'});
+        const message = await categoryService.deleteCategory(categoryId);
+       
+        if (!message) {
+            return res.status(400).json({ success: false, error: 'Message not found!' })
         }
+        return res.status(200).json({ success: true, data: message, })
 
-        res.json({message: 'Category deleted successfully'});
+
     } catch {
         console.error(error);
         res.status(500).json({ error: `Internal Server Error - ${error}`});
     }
 };
 
-
-
-
 module.exports = {
-    createCategory
+    getAllCategories,
+    getCategory,
+    createCategory,
+    updateCategory,
+    deleteCategory,
 };
