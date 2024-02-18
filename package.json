@@ -4,6 +4,7 @@
   "description": "<h1>Backend Analyst Candidate Test<",
   "main": "index.js",
   "scripts": {
+    "dev": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -15,5 +16,8 @@
     "express": "^4.18.2",
     "mongoose": "^8.1.2",
     "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.3"
   }
 }
