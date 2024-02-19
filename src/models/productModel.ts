@@ -1,14 +1,21 @@
-const mongoose = require('mongoose');
-const { v4: uuidv4 } = require('uuid');
+import mongoose, {Document, Schema} from "mongoose";
 
-const productSchema = new mongoose.Schema({
-    title: String,
-    description: String,
-    price: Number,
-    category: { type: mongoose.Schema.Types.ObjectId, ref: 'Category'},
-    ownerId: String,
+export interface IProduct extends Document {
+  title: string;
+  description: string;
+  price: number;
+  category: Schema.Types.ObjectId;
+  ownerId: string;
+}
+
+const productSchema = new Schema<IProduct>({
+  title: String,
+  description: String,
+  price: Number,
+  category: {type: mongoose.Schema.Types.ObjectId, ref: "Category"},
+  ownerId: String,
 });
 
-const Product =  mongoose.model('Product', productSchema);
+const Product = mongoose.model<IProduct>("Product", productSchema);
 
-module.exports = Product;
+export default Product;
