@@ -1,10 +1,9 @@
 require('dotenv').config();
-const express = require('express');
-const mongoose = require('./db');
-const bodyParser = require('body-parser');
+import express from 'express';
+import bodyParser from 'body-parser';
 
-const productRoutes = require('./src/routes/productRoutes');
-const categoryRoutes = require('./src/routes/categoryRoutes');
+import productRoutes from './src/routes/productRoutes';
+import categoryRoutes from './src/routes/categoryRoutes';
 
 
 const app = express();
@@ -14,8 +13,6 @@ app.use(bodyParser.json());
 
 app.use('/api', productRoutes);
 app.use('/api', categoryRoutes);
-
-
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
