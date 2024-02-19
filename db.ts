@@ -1,8 +1,8 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const { MONGO_URI } = process.env;
 
-mongoose.connect(MONGO_URI, {});
+mongoose.connect(MONGO_URI!, {});
 
 const db = mongoose.connection;
 
@@ -11,4 +11,4 @@ db.once('open', () => {
     console.log('MongoDb connected');
 });
 
-module.exports = db;
+export default db;
