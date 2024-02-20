@@ -3,6 +3,7 @@ dotenv.config();
 import express from "express";
 import bodyParser from "body-parser";
 import connect from "./db";
+import {awsLoadSettings} from "./config/aws";
 
 import productRoutes from "./routes/productRoutes";
 import categoryRoutes from "./routes/categoryRoutes";
@@ -20,3 +21,5 @@ connect().then(() => {
     console.log(`Server is running on port ${PORT}`);
   });
 });
+
+awsLoadSettings();
