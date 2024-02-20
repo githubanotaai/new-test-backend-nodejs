@@ -1,5 +1,5 @@
-export class CategoryNotFoundError extends Error {
-  constructor(message: string = "Category not found or owner not match") {
+export class ProductNotFoundError extends Error {
+  constructor(message: string = "Product not found") {
     super(message);
     this.name = this.constructor.name;
   }

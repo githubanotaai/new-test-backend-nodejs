@@ -1,7 +1,7 @@
 import {Request, Response} from "express";
 import {CreateProductDTO, UpdateProductDTO} from "../dtos/productDTO";
 import productService from "../services/productService";
-import {CategoryNotFoundError} from "../errors/productError";
+import {CategoryNotFoundError} from "../errors/categoryError";
 
 export const getAllProducts = async (
   req: Request,
@@ -43,13 +43,18 @@ export const createProduct = async (
 
     const savedProduct = await productService.createProduct(productDTO);
     res.status(201).json(savedProduct);
-  } catch (error) {
-    console.error(error);
-    if (error instanceof CategoryNotFoundError) {
-      res.status(400).json({error: `Bad Request - ${error}`});
-      return;
+  } catch (err) {
+    console.error(err);
+    if (err instanceof Error) {
+      if (
+        err.name === "CategoryNotFoundError" ||
+        err.name === "CategoryNotFoundError"
+      ) {
+        res.status(400).json({error: `Bad Request - ${err}`});
+      } else {
+        res.status(500).json({error: `Internal Server Error - ${err}`});
+      }
     }
-    res.status(500).json({error: `Internal Server Error - ${error}`});
   }
 };
 
