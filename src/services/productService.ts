@@ -54,10 +54,9 @@ class ProductService {
       ...productDTO,
       price: productDTO.price * 100,
     };
-
     const updatedProduct = await productRepository.update(
       productId,
-      productDTO
+      updatedProductDTO
     );
     if (!updatedProduct) {
       return null;
