@@ -1,27 +1,28 @@
-import Category from '../models/categoryModel';
-import { CreateCategoryDTO, UpdateCategoryDTO } from '../dtos/categoryDTO';
+import CategoryRepository from "../repositories/categoryRepository";
+import {CreateCategoryDTO, UpdateCategoryDTO} from "../dtos/categoryDTO";
 
 class CategoryService {
-    async getAllCategories () {
-        return await Category.find();
-    }
-    
-    async getCategory(categoryId: string) {
-        return await Category.findById(categoryId);
-    }
+  constructor(private categoryRepository: typeof CategoryRepository) {}
 
-    async createCategory( categoryDTO: CreateCategoryDTO) {
-        const category = new Category (categoryDTO);
-        return await category.save()
-    };
+  async getAllCategories() {
+    return await this.categoryRepository.find();
+  }
 
-    async updateCategory (categoryId: string, categoryDTO: UpdateCategoryDTO) {
-        return await Category.findByIdAndUpdate( categoryId, categoryDTO, {new: true});
-    }
+  async getCategory(categoryId: string) {
+    return await this.categoryRepository.findById(categoryId);
+  }
 
-    async deleteCategory(categoryId: string,) {
-        return await Category.findByIdAndDelete(categoryId);
-    }
+  async createCategory(categoryDTO: CreateCategoryDTO) {
+    return await this.categoryRepository.create(categoryDTO);
+  }
+
+  async updateCategory(categoryId: string, categoryDTO: UpdateCategoryDTO) {
+    return await this.categoryRepository.update(categoryId, categoryDTO);
+  }
+
+  async deleteCategory(categoryId: string) {
+    return await this.categoryRepository.delete(categoryId);
+  }
 }
 
-export default new CategoryService();
+export default new CategoryService(CategoryRepository);
