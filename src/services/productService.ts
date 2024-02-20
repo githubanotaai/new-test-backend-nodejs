@@ -1,7 +1,7 @@
 import Product, {IProduct} from "../models/productModel";
 import {CreateProductDTO, UpdateProductDTO} from "../dtos/productDTO";
-import {Document, Schema} from "mongoose";
-
+import {Schema} from "mongoose";
+import productRepository from "../repositories/productRepository";
 interface ProductDocument extends IProduct {}
 
 interface transformProduct {
@@ -40,12 +40,8 @@ class ProductService {
   }
 
   async createProduct(productDTO: CreateProductDTO): Promise<transformProduct> {
-    const product = new Product({
-      title: productDTO.title,
-      description: productDTO.description,
-      price: productDTO.price * 100,
-    });
-    const productSaved = await product.save();
+    productDTO.price = productDTO.price * 100;
+    const productSaved = await productRepository.create(productDTO);
     return this.transformProduct(productSaved);
   }
 
@@ -59,10 +55,9 @@ class ProductService {
       price: productDTO.price * 100,
     };
 
-    const updatedProduct = await Product.findByIdAndUpdate(
+    const updatedProduct = await productRepository.update(
       productId,
-      updatedProductDTO,
-      {new: true}
+      productDTO
     );
     if (!updatedProduct) {
       return null;
