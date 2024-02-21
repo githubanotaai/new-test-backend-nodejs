@@ -8,6 +8,7 @@ on:
 
     paths:
       - 'catalog-emit-consumer/**'
+      
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -15,6 +16,9 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
+
+    - name: List directory contents
+      run: ls -l catalog-emit-consumer
 
     - name: Set up Node.js
       uses: actions/setup-node@v3
