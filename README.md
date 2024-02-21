@@ -1,3 +1,4 @@
+[![Deploy to AWS Lambda](https://github.com/andrelcunha/new-test-backend-nodejs/actions/workflows/deploy.yml/badge.svg)](https://github.com/andrelcunha/new-test-backend-nodejs/actions/workflows/deploy.yml)
 
 # Product Catalog Management System API
 
