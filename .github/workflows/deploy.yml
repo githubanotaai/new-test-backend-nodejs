@@ -34,13 +34,13 @@ jobs:
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: ${{ env.AWS_REGION }}
+        aws-region: ${{ var.AWS_REGION }}
 
     - name: Deploy to AWS Lambda
       env:
         MONGO_URI: ${{ secrets.MONGO_URI }}
-        AWS_SQS_QUEUE_URL: ${{ env.AWS_SQS_QUEUE_URL }}
-        AWS_S3_BUCKET: ${{ env.AWS_S3_BUCKET }}
+        AWS_SQS_QUEUE_URL: ${{ var.AWS_SQS_QUEUE_URL }}
+        AWS_S3_BUCKET: ${{ var.AWS_S3_BUCKET }}
         
       run: |
         aws s3 cp function.zip s3://ifood-product-catalog-bucket
