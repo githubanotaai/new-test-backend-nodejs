@@ -1,6 +1,6 @@
 import {PublishCommand, SNSClient} from "@aws-sdk/client-sns";
 import BaseAWS from "../config/baseAWS";
-import MessageDTO from "../DTO/messageDTO";
+import MessageDTO from "../dtos/messageDTO";
 
 export default class SNSService extends BaseAWS {
   private snsClient: SNSClient;
@@ -20,7 +20,7 @@ export default class SNSService extends BaseAWS {
     return snsClient;
   }
 
-  async publish(messageDTO: MessageDTO) {
+  async publish(messageDTO: MessageDTO): Promise<{MessageId: string}> {
     const params = {
       Message: messageDTO.message,
       TopicArn: this.topic,
@@ -29,14 +29,14 @@ export default class SNSService extends BaseAWS {
     try {
       const data = await this.snsClient.send(new PublishCommand(params));
       console.log("Message sent. ID: ", data.MessageId);
+      if (data.MessageId) {
+        return {MessageId: data.MessageId};
+      } else {
+        throw new Error("MessageId is undefined");
+      }
     } catch (err) {
       if (err instanceof Error) console.error(err, err.stack);
+      throw err;
     }
   }
 }
-
-export const sns_test = () => {
-  const topic = process.env.AWS_SNS_TOPIC_CATALOG_ARN ?? "";
-  const snsService = new SNSService(topic);
-  snsService.publish(new MessageDTO("Hello, World!"));
-};

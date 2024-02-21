@@ -6,7 +6,6 @@ import connect from "./db";
 
 import productRoutes from "./routes/productRoutes";
 import categoryRoutes from "./routes/categoryRoutes";
-import {sns_test} from "./aws/services/snsService";
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -21,5 +20,3 @@ connect().then(() => {
     console.log(`Server is running on port ${PORT}`);
   });
 });
-
-sns_test();

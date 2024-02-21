@@ -7,7 +7,8 @@
     "start:dev": "nodemon --exec ts-node src/app.ts",
     "start:prod": "node dist/app.js",
     "build": "tsc",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest",
+    "test:watch": "jest --watch"
   },
   "keywords": [],
   "author": "",
