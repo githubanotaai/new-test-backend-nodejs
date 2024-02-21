@@ -2,6 +2,9 @@ import Product, {IProduct} from "../models/productModel";
 import {CreateProductDTO, UpdateProductDTO} from "../dtos/productDTO";
 import {Schema} from "mongoose";
 import productRepository from "../repositories/productRepository";
+import SNSService from "../aws/services/snsService";
+import MessageDTO from "../aws/dtos/messageDTO";
+
 interface ProductDocument extends IProduct {}
 
 interface transformProduct {
@@ -14,6 +17,12 @@ interface transformProduct {
 }
 
 class ProductService {
+  private snsService: SNSService;
+  constructor() {
+    const topic = process.env.AWS_SNS_TOPIC_CATALOG_ARN ?? "";
+    this.snsService = new SNSService(topic);
+  }
+
   private transformProduct(product: ProductDocument): transformProduct {
     return {
       _id: product._id,
@@ -40,9 +49,17 @@ class ProductService {
   }
 
   async createProduct(productDTO: CreateProductDTO): Promise<transformProduct> {
+    // Multiply the price by 100 before saving
     productDTO.price = productDTO.price * 100;
-    const productSaved = await productRepository.create(productDTO);
-    return this.transformProduct(productSaved);
+
+    //save product
+    const savedProduct = await productRepository.create(productDTO);
+    //send message
+    const msg = JSON.stringify({ownerId: savedProduct.ownerId});
+    this.snsService.publish(new MessageDTO(msg));
+
+    //Divide the price by 100 before returning
+    return this.transformProduct(savedProduct);
   }
 
   async updateProduct(
@@ -61,6 +78,10 @@ class ProductService {
     if (!updatedProduct) {
       return null;
     }
+    // Send message
+    const msg = JSON.stringify({ownerId: updatedProduct.ownerId});
+    this.snsService.publish(new MessageDTO(msg));
+
     // Divide the price by 100 before returning
     return this.transformProduct(updatedProduct);
   }
