@@ -27,7 +27,7 @@ jobs:
 
     - name: Package Lambda function
       run: |
-        zip -r ./fcatalog-emit-consumer/function.zip ./.
+        zip -r ./function.zip ./catalog-emit-consumer/.
 
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
