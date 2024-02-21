@@ -5,8 +5,7 @@ on:
     branches:
       - master
       - development
-    paths:
-      - "src/**"
+    
 jobs:
   deploy:
     runs-on: ubuntu-latest
