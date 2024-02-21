@@ -1,4 +1,4 @@
-import { S3Client, GetObjectAclCommand, PutObjectCommand } from '@aws-sdk/client-s3';
+import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3';
 import { MongoClient } from 'mongodb';
 
 const s3Client = S3Client({region: process.env.AWS_REGION})
@@ -91,7 +91,7 @@ exports.handler = async (event) => {
             
         }
         //close MongoDB connection
-        dbClient.close();
+        client.close();
         return { status: 'success' };
     } catch (err) {
         console.log("Error processing messages on SQS.", err);
