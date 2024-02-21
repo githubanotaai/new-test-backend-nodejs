@@ -6,7 +6,7 @@ on:
       - master
       - development
     paths:
-      - "catalog-emit-consumer/**"
+      - "src/**"
 jobs:
   deploy:
     runs-on: ubuntu-latest
