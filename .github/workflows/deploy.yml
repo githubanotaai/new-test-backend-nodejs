@@ -45,4 +45,5 @@ jobs:
 
       - name: Update Lambda environment variables
         run: |
-          aws lambda update-function-configuration --function-name catalog-emit-consumer --environment Variables={MONGO_URI=${{ secrets.MONGO_URI }},AWS_SQS_QUEUE_URL=${{ secrets.AWS_SQS_QUEUE_URL }},AWS_S3_BUCKET=${{ secrets.AWS_S3_BUCKET }}}
+          aws lambda update-function-configuration --function-name catalog-emit-consumer --environment-variables Environment={Name=MONGO_URI,Value=${{secrets.MONGO_URI}}} --environment-variables Environment={Name=AWS_SQS_QUEUE_URL,Value=${{secrets.AWS_SQS_QUEUE_URL}}} --environment-variables Environment={Name=AWS_S3_BUCKET,Value=${{secrets.AWS_S3_BUCKET}}}
+
