@@ -1,6 +1,5 @@
-[![Deploy to AWS Lambda](https://github.com/andrelcunha/new-test-backend-nodejs/actions/workflows/deploy.yml/badge.svg)](https://github.com/andrelcunha/new-test-backend-nodejs/actions/workflows/deploy.yml)
-
 # Product Catalog Management System API
+[![Deploy to AWS Lambda](https://github.com/andrelcunha/new-test-backend-nodejs/actions/workflows/deploy.yml/badge.svg)](https://github.com/andrelcunha/new-test-backend-nodejs/actions/workflows/deploy.yml)
 
 ## Overview
 
@@ -11,7 +10,7 @@ This is a Node.js backend API for a product catalog management system in a marke
 
 ## Installation
 
-1. Clone the repository: `git clone https://github.com/your-github-username/your-repo-name.git`
+1. Clone the repository: `git clone https://github.com//your-repo-name.git`
 2. Navigate to the project directory: `cd your-repo-name`
 3. Install the dependencies: `npm install`
 4. Create a `.env` file in the root of your project and insert your key-value pairs in the following format of `KEY=VALUE`:
