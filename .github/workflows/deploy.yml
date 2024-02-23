@@ -1,0 +1,47 @@
+name: Deploy to AWS Lambda
+
+on:
+  push:
+    branches:
+      - master
+      - development
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Package Lambda function
+        run: |
+          zip -r ./function.zip ./catalog-emit-consumer/.
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ vars.AWS_REGION }}
+
+      - name: Update Lambda environment variables
+        env:
+          MONGO_URI: ${{ secrets.MONGO_URI }}
+          AWS_SQS_QUEUE_URL: ${{ vars.AWS_SQS_QUEUE_URL }}
+          AWS_S3_BUCKET: ${{ vars.AWS_S3_BUCKET }}
+        run: |
+          aws lambda update-function-configuration --function-name catalog-emit-consumer --environment Variables="{MONGO_URI=$MONGO_URI,AWS_SQS_QUEUE_URL=$AWS_SQS_QUEUE_URL,AWS_S3_BUCKET=$AWS_S3_BUCKET}"
+
+      - name: Deploy to AWS Lambda
+        run: |
+          aws s3 cp function.zip s3://ifood-product-catalog-bucket
+          aws lambda update-function-code --function-name catalog-emit-consumer --s3-bucket ifood-product-catalog-bucket --s3-key function.zip
