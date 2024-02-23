@@ -33,11 +33,6 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ vars.AWS_REGION }}
 
-      - name: Deploy to AWS Lambda
-        run: |
-          aws s3 cp function.zip s3://ifood-product-catalog-bucket
-          aws lambda update-function-code --function-name catalog-emit-consumer --s3-bucket ifood-product-catalog-bucket --s3-key function.zip
-
       - name: Update Lambda environment variables
         env:
           MONGO_URI: ${{ secrets.MONGO_URI }}
@@ -45,3 +40,8 @@ jobs:
           AWS_S3_BUCKET: ${{ vars.AWS_S3_BUCKET }}
         run: |
           aws lambda update-function-configuration --function-name catalog-emit-consumer --environment Variables="{MONGO_URI=$MONGO_URI,AWS_SQS_QUEUE_URL=$AWS_SQS_QUEUE_URL,AWS_S3_BUCKET=$AWS_S3_BUCKET}"
+
+      - name: Deploy to AWS Lambda
+        run: |
+          aws s3 cp function.zip s3://ifood-product-catalog-bucket
+          aws lambda update-function-code --function-name catalog-emit-consumer --s3-bucket ifood-product-catalog-bucket --s3-key function.zip
