@@ -8,7 +8,7 @@ AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 Description: An AWS Serverless Application Model template describing your function.
 Resources:
-  catalogEmitConsumer:
+  catalogemitconsumer:
     Type: AWS::Serverless::Function
     Properties:
       CodeUri: .
@@ -37,7 +37,7 @@ Resources:
                 - logs:PutLogEvents
               Resource:
                 - >-
-                  arn:aws:logs:us-east-2:461460154635:log-group:/aws/lambda/catalogEmitConsumer:*
+                  arn:aws:logs:us-east-2:461460154635:log-group:/aws/lambda/catalog-emit-consumer:*
             - Effect: Allow
               Action:
                 - sqs:ReceiveMessage
