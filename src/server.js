@@ -1,5 +1,6 @@
 import express from 'express'
 import { MongoConnectDatabase } from './database/connection.js'
+import { Owner } from './model/owner.js'
 
 const app = express()
 
@@ -18,10 +19,11 @@ connectionDatabase.main()
     })
 
 
-app.get('/', (request, reponse) => {
-    reponse.json({
-        message: "Server Running"
-    })
+app.get('/', async (request, reponse) => {
+    const allOwners = await Owner.find()
+    console.log(allOwners)
+
+    reponse.json(allOwners)
 })
 
 app.listen(port, () => {
