@@ -9,9 +9,15 @@ export class OwnerController {
             name
         })
 
-        await owners.save()
+        try {
+            await owners.save()
 
-        return res.status(201).json(owners)
+            return res.status(201).json(owners)
+        }catch(e) {
+            return res.status(404).json({
+                message: 'Name is required'
+            })
+        }
     }
 
     async getAll(req, res) {
