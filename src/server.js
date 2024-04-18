@@ -1,6 +1,6 @@
-import express from 'express'
+import express, { response } from 'express'
 import { MongoConnectDatabase } from './database/connection.js'
-import { Owner } from './model/owner.js'
+import { OwnerController } from './controller/onwer-controller.js'
 
 const app = express()
 
@@ -9,6 +9,7 @@ const port = process.env.PORT || 8080
 app.use(express.json())
 
 const connectionDatabase = new MongoConnectDatabase()
+const ownerController = new OwnerController()
 
 connectionDatabase.main()
     .then(() => {
@@ -19,11 +20,17 @@ connectionDatabase.main()
     })
 
 
-app.get('/', async (request, reponse) => {
-    const allOwners = await Owner.find()
-    console.log(allOwners)
+app.get('/owners', async (request, response) => {
 
-    reponse.json(allOwners)
+    const owners = await ownerController.getAll(request, response)
+
+    return owners
+})
+
+app.post('/owners', async (request, response) => {
+    const owners = await ownerController.post(request, response)
+    
+    return owners
 })
 
 app.listen(port, () => {

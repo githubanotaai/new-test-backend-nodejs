@@ -1,0 +1,137 @@
+[33mcommit b839f07f360bb0e86cd4c48dd1358fb35249c318[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mcreate-models[m[33m, [m[1;32mlucas-nather[m[33m)[m
+Author: lucasnather <natherlucas@gmail.com>
+Date:   Thu Apr 18 15:34:08 2024 -0400
+
+    feat: create connection with mongodb
+
+[33mcommit fab3cb619a84418243b3747f257f00e4cfc7f90b[m
+Author: lucasnather <natherlucas@gmail.com>
+Date:   Thu Apr 18 15:01:41 2024 -0400
+
+    feat: set up docker compose
+
+[33mcommit 2ea2d50ebe7306024eb30ae9f0c47905968f74ef[m
+Author: lucasnather <natherlucas@gmail.com>
+Date:   Thu Apr 18 14:35:34 2024 -0400
+
+    feat: run server with express
+
+[33mcommit 02bae87caa17e3e3a45ccc82b1a2403f300b478d[m[33m ([m[1;31morigin/lucas-nather[m[33m)[m
+Author: lucasnather <natherlucas@gmail.com>
+Date:   Thu Apr 18 14:27:04 2024 -0400
+
+    chore: install dependencies
+
+[33mcommit e718f4cdfe1c7a4ce7802d9abcd79d3e327534ff[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmaster[m[33m)[m
+Author: Thiago Pontes Soares <thiagodevps@gmail.com>
+Date:   Fri Jul 7 15:40:44 2023 -0300
+
+    Update README.md
+
+[33mcommit 21cc5b5d8f70227ec9ad774048dfb610837b9c8b[m
+Author: Thiago Pontes Soares <thiagodevps@gmail.com>
+Date:   Mon Jun 26 15:35:29 2023 -0300
+
+    Update README.md
+
+[33mcommit bc98a242e9da4a74d6c8cd639194ff40278edfe7[m
+Author: Thiago Pontes Soares <thiagodevps@gmail.com>
+Date:   Mon Jun 26 15:35:00 2023 -0300
+
+    Update README.md
+
+[33mcommit c69238992e20535a143e358fbe59ea725b1a5160[m
+Author: Thiago Pontes Soares <thiagodevps@gmail.com>
+Date:   Mon Jun 26 15:34:43 2023 -0300
+
+    Update README.md
+
+[33mcommit b669f49aa267e9ad2c6f17ee42595ff9457ccc59[m
+Author: Thiago Pontes Soares <thiagodevps@gmail.com>
+Date:   Mon Jun 26 15:34:23 2023 -0300
+
+    Update README.md
+
+[33mcommit b494fe4a3f0592e57b4009a362f2f06ccefd18e3[m
+Author: Thiago Pontes Soares <thiagodevps@gmail.com>
+Date:   Mon Jun 26 15:34:01 2023 -0300
+
+    Update README.md
+
+[33mcommit d7d7323cc5a87ce3e9429066c4326067d83881df[m
+Author: Thiago Pontes Soares <thiagodevps@gmail.com>
+Date:   Mon Jun 26 15:32:10 2023 -0300
+
+    Update README.md
+
+[33mcommit 36d78ebfe10a34f515046b0d302c297ba98095a4[m
+Author: Thiago Pontes Soares <thiagodevps@gmail.com>
+Date:   Mon Jun 26 15:31:51 2023 -0300
+
+    Update README.md
+
+[33mcommit fe693cb10a8cf2327ec472daa3afa6ed14677277[m
+Author: Thiago Pontes Soares <thiagodevps@gmail.com>
+Date:   Mon Jun 26 15:31:00 2023 -0300
+
+    Update README.md
+
+[33mcommit 2b66d333ff7cca6a6fb8aa75f047c08f917707ef[m
+Author: Thiago Pontes Soares <thiagodevps@gmail.com>
+Date:   Mon Jun 26 15:30:45 2023 -0300
+
+    Update README.md
+
+[33mcommit 692c4ed380607662b7cd8a03ceafd3cf6a213b93[m
+Author: Thiago Pontes Soares <thiagodevps@gmail.com>
+Date:   Mon Jun 26 15:30:30 2023 -0300
+
+    Update README.md
+
+[33mcommit 7602d0635e4d353ee7b2e45572da9ffae78b59e6[m
+Author: Thiago Pontes Soares <thiagodevps@gmail.com>
+Date:   Mon Jun 26 15:30:07 2023 -0300
+
+    Update README.md
+
+[33mcommit 4196de53c7c0ece1109f0decdc490c004a56d9eb[m
+Author: Thiago Pontes Soares <thiagodevps@gmail.com>
+Date:   Mon Jun 26 15:29:19 2023 -0300
+
+    Update README.md
+
+[33mcommit 7b6d6131d74e9be5417ad5bd9db1059440921a6a[m
+Author: Thiago Pontes Soares <thiagodevps@gmail.com>
+Date:   Mon Jun 26 15:28:50 2023 -0300
+
+    Update README.md
+
+[33mcommit f00a50dc8ca113485f64a8586be6d63444caf2a9[m
+Author: Thiago Pontes Soares <thiagodevps@gmail.com>
+Date:   Mon Jun 26 15:28:21 2023 -0300
+
+    Update README.md
+
+[33mcommit 5a7731e2e75ab1dd31e86bb9c3277f1a75f31125[m
+Author: Thiago Pontes Soares <thiagodevps@gmail.com>
+Date:   Mon Jun 26 15:25:40 2023 -0300
+
+    Update README.md
+
+[33mcommit a4c35770af4ebab950991439a69af89475f641ec[m
+Author: Thiago Soares <thiagodevps@gmail.com>
+Date:   Mon Jun 26 15:16:26 2023 -0300
+
+    init
+
+[33mcommit 19a9e223f3bc548cf8a23150ca0c55597c7a56c7[m
+Author: Thiago Soares <thiagodevps@gmail.com>
+Date:   Mon Jun 26 15:15:03 2023 -0300
+
+    init
+
+[33mcommit 6ef3d5d3c53986b26a6a20f8349022f023411720[m
+Author: Thiago Pontes Soares <thiagodevps@gmail.com>
+Date:   Mon Jun 26 14:37:57 2023 -0300
+
+    Initial commit
