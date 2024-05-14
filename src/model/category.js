@@ -10,12 +10,11 @@ const categoriesSchema = new Schema({
         type: String,
         required: true
     },
-    owners: [{
+    ownerId: {
         type: Schema.Types.ObjectId,
         required: true,
-        ref: "Owner",
-        
-    }]
+        ref: "Owner", 
+    }
 })
 
 export const Categories = mongoose.model('Categories', categoriesSchema)

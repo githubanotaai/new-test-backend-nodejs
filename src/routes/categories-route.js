@@ -1,11 +1,13 @@
-import { Router } from 'express'
+import express from 'express'
 import { CategoryController } from '../controller/category-controller.js'
 
-export const categoriesRoute = Router()
+export const categoriesRoute = express.Router()
 
 const categoryController = new CategoryController()
 
 categoriesRoute
-    .get('/', categoryController.getAll)
+    .get('/', categoryController.get)
     .post('/', categoryController.post)
+    .delete('/:id', categoryController.remove)
+    .put('/:id', categoryController.update)
     

@@ -1,8 +1,9 @@
 import express from 'express'
 import { MongoConnectDatabase } from './database/connection.js'
-import { CategoryController } from './controller/category-controller.js'
 import { ownersRoute } from './routes/owner-route.js'
 import { categoriesRoute } from './routes/categories-route.js'
+import { productRoute } from './routes/product-route.js'
+import { catalogRoute } from './routes/catalog-route.js'
 
 const app = express()
 
@@ -20,8 +21,10 @@ connectionDatabase.main()
         console.error('Database error', e)
     })
 
-app.use('/owners', ownersRoute)
-app.use('/categories', categoriesRoute)
+app.use('/api/owners', ownersRoute)
+app.use('/api/categories', categoriesRoute)
+app.use('/api/products', productRoute)
+app.use('/api/catalog', catalogRoute)
 
 app.listen(port, () => {
     console.log(`Server running at port http://localhost:${port}`)
