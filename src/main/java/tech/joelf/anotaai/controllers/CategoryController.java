@@ -1,14 +1,11 @@
 package tech.joelf.anotaai.controllers;
 
+import javax.validation.Valid;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+
+import org.springframework.web.bind.annotation.*;
 
 import tech.joelf.anotaai.dtos.request.CreateCategoryDtoIn;
 import tech.joelf.anotaai.dtos.request.UpdateCategoryDtoIn;
@@ -26,12 +23,12 @@ public class CategoryController {
     }
 
     @PostMapping
-    public ResponseEntity<CategoryDtoOut> create(@RequestBody CreateCategoryDtoIn dto) {
+    public ResponseEntity<CategoryDtoOut> create(@RequestBody @Valid CreateCategoryDtoIn dto) {
         return ResponseEntity.status(HttpStatus.CREATED).body(categoryService.create(dto));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<CategoryDtoOut> update(@PathVariable Long id, @RequestBody UpdateCategoryDtoIn dto) {
+    public ResponseEntity<CategoryDtoOut> update(@PathVariable Long id, @RequestBody @Valid UpdateCategoryDtoIn dto) {
         return ResponseEntity.ok(categoryService.update(id, dto));
     }
 

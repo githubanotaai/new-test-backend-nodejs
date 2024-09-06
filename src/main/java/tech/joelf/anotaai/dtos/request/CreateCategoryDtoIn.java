@@ -1,8 +1,14 @@
 package tech.joelf.anotaai.dtos.request;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 public class CreateCategoryDtoIn {
+    @NotBlank
     private String title;
     private String description;
+
+    @NotNull
     private Long owner;
 
     public CreateCategoryDtoIn() {

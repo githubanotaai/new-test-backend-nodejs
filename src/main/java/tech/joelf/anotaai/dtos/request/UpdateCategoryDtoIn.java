@@ -1,6 +1,10 @@
 package tech.joelf.anotaai.dtos.request;
 
+import javax.validation.constraints.NotBlank;
+
 public class UpdateCategoryDtoIn {
+
+    @NotBlank
     private String title;
     private String description;
 
