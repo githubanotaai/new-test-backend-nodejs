@@ -1,11 +1,21 @@
 package tech.joelf.anotaai.dtos.response;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 public class CategoryDtoOut {
+    private Long id;
     private String title;
     private String description;
     private OwnerDtoOut owner;
+    private List<ProductDtoOut> products = new ArrayList<>();
 
     public CategoryDtoOut() {
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public String getTitle() {
@@ -20,6 +30,10 @@ public class CategoryDtoOut {
         return owner;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public void setTitle(String title) {
         this.title = title;
     }
@@ -30,5 +44,13 @@ public class CategoryDtoOut {
 
     public void setOwner(OwnerDtoOut owner) {
         this.owner = owner;
+    }
+
+    public List<ProductDtoOut> getProducts() {
+        return Collections.unmodifiableList(products);
+    }
+
+    public void setProducts(List<ProductDtoOut> products) {
+        this.products = products;
     }
 }
