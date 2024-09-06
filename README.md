@@ -1,9 +1,7 @@
-
 <h1>Backend Analyst Candidate Test</h1>
 Dear developer,
 
 Welcome to the Backend Analyst Candidate Test. This test aims to assess your general knowledge and development speed. Below, you will find the details and requirements for this test.
-
 
 <strong>The Challenge</strong>
 
@@ -27,22 +25,22 @@ Your task is to develop an API using Node.js for a product catalog management sy
 
 <strong>You need to develop this test using the following technologies:</strong>
 
-- MongoDB for the database.
-- AWS SQS for the catalog change notifications.
+- PostgreSQL for the database.
+- RabbitMQ for the catalog change notifications.
 - AWS S3 for storing the catalog JSON.
-- Node.js for the backend.
-- Express.js as the web framework.
+- Java for the backend.
+- Spring Boot as the web framework.
 
 <hr>
 <strong>Diagram representing the final structure of the project:</strong> <br><br>
 ![image](https://github.com/githubanotaai/new-test-backend-nodejs/assets/52219768/504ba448-f128-41db-ae86-18dc19c0dc9d)
-
 
 <hr>
 
 <strong>Instructions</strong>
 
 <strong>To begin the test, fork this repository, create a branch with your full name, and send us the link to your completed test (link to your repository). If you only clone the repository, you won't be able to push changes, making the pull request more complicated.</strong>
+
 - Use your own AWS account to set up the required services.
 - Update the README file with instructions on how to run your application.
 - Paste the branch name into the GUPY system and indicate the completion of the test.
@@ -51,7 +49,7 @@ Your task is to develop an API using Node.js for a product catalog management sy
 <strong>Our Evaluation Criteria</strong>
 We will assess the following aspects of your solution:
 
-- Knowledge of JavaScript, Node.js, and Express.js.
+- Knowledge of Java, Spring Boot.
 - Proper structure of the application layers.
 - Handling of outgoing calls.
 - Effective use of environment variables.
