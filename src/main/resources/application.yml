@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: anotaai
+  profiles:
+    active: dev
