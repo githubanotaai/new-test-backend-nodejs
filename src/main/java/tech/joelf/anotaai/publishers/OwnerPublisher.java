@@ -2,9 +2,11 @@ package tech.joelf.anotaai.publishers;
 
 import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.stereotype.Component;
 
 import tech.joelf.anotaai.models.Owner;
 
+@Component
 public class OwnerPublisher {
 
     private final Queue ownerQueue;
