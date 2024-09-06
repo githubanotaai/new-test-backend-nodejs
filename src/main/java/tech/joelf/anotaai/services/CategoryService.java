@@ -1,5 +1,8 @@
 package tech.joelf.anotaai.services;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
 
@@ -51,6 +54,17 @@ public class CategoryService {
         } catch (EntityNotFoundException e) {
             throw new EntityNotFoundException("Owner not found.");
         }
+    }
+
+    public CategoryDtoOut find(Long id) {
+        Category category = categoryRepository.findById(id).orElseThrow(RuntimeException::new);
+        return modelMapper.map(category, CategoryDtoOut.class);
+    }
+
+    public List<CategoryDtoOut> findOwnerCategories(Long id) {
+        List<Category> categories = categoryRepository.findOwnerCategories(id);
+        return categories.stream().map(category -> modelMapper.map(category, CategoryDtoOut.class))
+                .collect(Collectors.toList());
     }
 
     @Transactional
