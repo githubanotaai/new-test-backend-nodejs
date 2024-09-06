@@ -11,11 +11,7 @@ import org.springframework.context.annotation.Configuration;
 public class AMQPConfig {
 
     @Value("${amqp.queues.catalog.name}")
-    private final String catalogQueue;
-
-    public AMQPConfig(String catalogQueue) {
-        this.catalogQueue = catalogQueue;
-    }
+    private String catalogQueue;
 
     @Bean
     public Queue catalogQueue() {
