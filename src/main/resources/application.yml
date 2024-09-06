@@ -3,3 +3,8 @@ spring:
     name: anotaai
   profiles:
     active: dev
+
+amqp:
+  queues:
+    owner:
+      name: owner
