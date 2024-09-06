@@ -17,7 +17,7 @@ import tech.joelf.anotaai.dtos.response.CategoryDtoOut;
 import tech.joelf.anotaai.dtos.response.OwnerDtoOut;
 import tech.joelf.anotaai.models.Category;
 import tech.joelf.anotaai.models.Owner;
-import tech.joelf.anotaai.publishers.OwnerPublisher;
+import tech.joelf.anotaai.publishers.CatalogPublisher;
 import tech.joelf.anotaai.repositories.CategoryRepository;
 
 @Service
@@ -26,10 +26,10 @@ public class CategoryService {
     private final ModelMapper modelMapper;
     private final CategoryRepository categoryRepository;
     private final OwnerService ownerService;
-    private final OwnerPublisher ownerPublisher;
+    private final CatalogPublisher ownerPublisher;
 
     public CategoryService(CategoryRepository categoryRepository, ModelMapper modelMapper, OwnerService ownerService,
-            OwnerPublisher ownerPublisher) {
+            CatalogPublisher ownerPublisher) {
         this.categoryRepository = categoryRepository;
         this.modelMapper = modelMapper;
         this.ownerService = ownerService;

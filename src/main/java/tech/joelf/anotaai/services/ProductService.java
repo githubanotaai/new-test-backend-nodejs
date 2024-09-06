@@ -17,7 +17,7 @@ import tech.joelf.anotaai.dtos.response.ProductDtoOut;
 import tech.joelf.anotaai.models.Category;
 import tech.joelf.anotaai.models.Owner;
 import tech.joelf.anotaai.models.Product;
-import tech.joelf.anotaai.publishers.OwnerPublisher;
+import tech.joelf.anotaai.publishers.CatalogPublisher;
 import tech.joelf.anotaai.repositories.ProductRepository;
 
 @Service
@@ -27,10 +27,10 @@ public class ProductService {
     private final ProductRepository productRepository;
     private final OwnerService ownerService;
     private final CategoryService categoryService;
-    private final OwnerPublisher ownerPublisher;
+    private final CatalogPublisher ownerPublisher;
 
     public ProductService(ProductRepository productRepository, ModelMapper modelMapper, OwnerService ownerService,
-            CategoryService categoryService, OwnerPublisher ownerPublisher) {
+            CategoryService categoryService, CatalogPublisher ownerPublisher) {
         this.productRepository = productRepository;
         this.modelMapper = modelMapper;
         this.ownerService = ownerService;

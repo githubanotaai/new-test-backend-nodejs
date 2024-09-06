@@ -8,15 +8,15 @@ import tech.joelf.anotaai.models.Owner;
 import tech.joelf.anotaai.services.CatalogService;
 
 @Component
-public class OwnerConsumer {
+public class CatalogConsumer {
 
     private final CatalogService catalogService;
 
-    public OwnerConsumer(CatalogService catalogService) {
+    public CatalogConsumer(CatalogService catalogService) {
         this.catalogService = catalogService;
     }
 
-    @RabbitListener(queues = "${amqp.queues.owner.name}")
+    @RabbitListener(queues = "${amqp.queues.catalog.name}")
     public void consumeOwner(@Payload Owner owner) {
         catalogService.generateCatalogByOwner(owner.getId());
     }

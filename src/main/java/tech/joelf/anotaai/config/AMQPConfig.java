@@ -10,20 +10,20 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class AMQPConfig {
 
-    @Value("${amqp.queues.owner.name}")
-    private final String ownerQueue;
+    @Value("${amqp.queues.catalog.name}")
+    private final String catalogQueue;
 
-    public AMQPConfig(String ownerQueue) {
-        this.ownerQueue = ownerQueue;
+    public AMQPConfig(String catalogQueue) {
+        this.catalogQueue = catalogQueue;
     }
 
     @Bean
-    public Queue ownerQueue() {
-        return new Queue(ownerQueue, Boolean.TRUE);
+    public Queue catalogQueue() {
+        return new Queue(catalogQueue, Boolean.TRUE);
     }
 
     @Bean
-    public RabbitTemplate ownerRabbitTemplate(ConnectionFactory connectionFactory) {
+    public RabbitTemplate catalogRabbitTemplate(ConnectionFactory connectionFactory) {
         return new RabbitTemplate(connectionFactory);
     }
 }

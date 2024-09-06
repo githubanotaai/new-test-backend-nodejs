@@ -6,5 +6,5 @@ spring:
 
 amqp:
   queues:
-    owner:
-      name: owner
+    catalog:
+      name: catalog-emit
