@@ -8,14 +8,14 @@ import tech.joelf.anotaai.models.Owner;
 public class OwnerPublisher {
 
     private final Queue ownerQueue;
-    private final RabbitTemplate rabbitTemplate;
+    private final RabbitTemplate ownerRabbitTemplate;
 
-    public OwnerPublisher(Queue ownerQueue, RabbitTemplate rabbitTemplate) {
+    public OwnerPublisher(Queue ownerQueue, RabbitTemplate ownerRabbitTemplate) {
         this.ownerQueue = ownerQueue;
-        this.rabbitTemplate = rabbitTemplate;
+        this.ownerRabbitTemplate = ownerRabbitTemplate;
     }
 
     public void publish(Owner owner) {
-        rabbitTemplate.convertAndSend(ownerQueue.getName(), owner);
+        ownerRabbitTemplate.convertAndSend(ownerQueue.getName(), owner);
     }
 }

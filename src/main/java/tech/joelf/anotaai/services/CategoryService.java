@@ -12,6 +12,7 @@ import tech.joelf.anotaai.dtos.request.CreateCategoryDtoIn;
 import tech.joelf.anotaai.dtos.request.UpdateCategoryDtoIn;
 import tech.joelf.anotaai.dtos.response.CategoryDtoOut;
 import tech.joelf.anotaai.models.Category;
+import tech.joelf.anotaai.publishers.OwnerPublisher;
 import tech.joelf.anotaai.repositories.CategoryRepository;
 
 @Service
@@ -20,11 +21,14 @@ public class CategoryService {
     private final ModelMapper modelMapper;
     private final CategoryRepository categoryRepository;
     private final OwnerService ownerService;
+    private final OwnerPublisher ownerPublisher;
 
-    public CategoryService(CategoryRepository categoryRepository, ModelMapper modelMapper, OwnerService ownerService) {
+    public CategoryService(CategoryRepository categoryRepository, ModelMapper modelMapper, OwnerService ownerService,
+            OwnerPublisher ownerPublisher) {
         this.categoryRepository = categoryRepository;
         this.modelMapper = modelMapper;
         this.ownerService = ownerService;
+        this.ownerPublisher = ownerPublisher;
     }
 
     @Transactional
@@ -32,6 +36,7 @@ public class CategoryService {
         Category category = modelMapper.map(dto, Category.class);
         category.setOwner(ownerService.find(dto.getOwner()));
 
+        ownerPublisher.publish(category.getOwner());
         return modelMapper.map(categoryRepository.save(category), CategoryDtoOut.class);
     }
 
@@ -41,6 +46,7 @@ public class CategoryService {
             Category category = categoryRepository.getById(id);
             BeanUtils.copyProperties(dto, category, "owner", "id");
 
+            ownerPublisher.publish(category.getOwner());
             return modelMapper.map(categoryRepository.save(category), CategoryDtoOut.class);
         } catch (EntityNotFoundException e) {
             throw new EntityNotFoundException("Owner not found.");
