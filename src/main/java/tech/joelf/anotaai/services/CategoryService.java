@@ -14,7 +14,9 @@ import org.springframework.stereotype.Service;
 import tech.joelf.anotaai.dtos.request.CreateCategoryDtoIn;
 import tech.joelf.anotaai.dtos.request.UpdateCategoryDtoIn;
 import tech.joelf.anotaai.dtos.response.CategoryDtoOut;
+import tech.joelf.anotaai.dtos.response.OwnerDtoOut;
 import tech.joelf.anotaai.models.Category;
+import tech.joelf.anotaai.models.Owner;
 import tech.joelf.anotaai.publishers.OwnerPublisher;
 import tech.joelf.anotaai.repositories.CategoryRepository;
 
@@ -37,7 +39,7 @@ public class CategoryService {
     @Transactional
     public CategoryDtoOut create(CreateCategoryDtoIn dto) {
         Category category = modelMapper.map(dto, Category.class);
-        category.setOwner(ownerService.find(dto.getOwner()));
+        category.setOwner(modelMapper.map(ownerService.find(dto.getOwner()), Owner.class));
 
         ownerPublisher.publish(category.getOwner());
         return modelMapper.map(categoryRepository.save(category), CategoryDtoOut.class);

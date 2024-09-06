@@ -1,5 +1,8 @@
 package tech.joelf.anotaai.services;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
 
@@ -37,7 +40,7 @@ public class ProductService {
 
     @Transactional
     public ProductDtoOut create(CreateProductDtoIn dto) {
-        Owner owner = ownerService.find(dto.getOwner());
+        Owner owner = modelMapper.map(ownerService.find(dto.getOwner()), Owner.class);
         Category category = modelMapper.map(categoryService.find(dto.getCategory()), Category.class);
 
         Product product = modelMapper.map(dto, Product.class);
@@ -59,6 +62,13 @@ public class ProductService {
         } catch (EntityNotFoundException e) {
             throw new EntityNotFoundException("Owner not found.");
         }
+    }
+
+    public List<ProductDtoOut> findByCategory(Long id) {
+        List<Product> products = productRepository.findProductsByCategory(id);
+
+        return products.stream().map(product -> modelMapper.map(product, ProductDtoOut.class))
+                .collect(Collectors.toList());
     }
 
     @Transactional
