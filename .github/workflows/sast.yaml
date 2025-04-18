@@ -1,0 +1,89 @@
+name: SAST and Linting
+
+on:
+  push:
+    branches:
+      - main
+      - master
+
+jobs:
+  huskyci:
+    name: HuskyCI Security Check
+    runs-on: [self-hosted]
+    env:
+      HUSKYCI_CLIENT_API_ADDR: "${{ secrets.HUSKYCI_CLIENT_API_ADDR }}"
+      HUSKYCI_CLIENT_API_USE_HTTPS: false
+      HUSKYCI_CLIENT_REPO_URL: git@github.com:${{ github.repository }}.git
+      HUSKYCI_CLIENT_REPO_BRANCH: "master"
+      HUSKYCI_CLIENT_TOKEN: "${{ secrets.HUSKYCI_CLIENT_TOKEN }}"
+      HUSKYCI_CLIENT_URL: "git@github.com/githubanotaai/huskyci-api.git"
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '^1.19'
+
+      - run: go version
+
+      - name: Downloading and installing tools
+        run: |
+          sudo apt-get update && sudo apt-get install -y --no-install-recommends make tcl-dev gettext libcurl4-openssl-dev openssh-client git
+          sudo curl -SL https://github.com/docker/compose/releases/download/v2.32.0/docker-compose-linux-x86_64 -o /usr/local/bin/docker-compose
+          sudo chmod +x /usr/local/bin/docker-compose
+
+      - name: HuskyCI Client Download, Build and Run
+        run: |
+          wget -O - https://github.com/githubanotaai/huskyci-api/archive/main.tar.gz | tar xz --strip=1
+          cd client/cmd
+          go build -ldflags "-s -w" -o huskyci-client main.go
+          git config --global --add safe.directory /__w/huskyci-api/huskyci-api
+          chmod +x huskyci-client
+          ./huskyci-client
+
+      - name: Debug SonarQube JSON File
+        if: ${{ !cancelled() }}
+        run: cat client/cmd/huskyCI/sonarqube.json
+
+      - name: Upload SonarQube Artifact
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: sonarqube
+          path: client/cmd/huskyCI/sonarqube.json
+
+  sonarqube:
+    name: Sonarqube Check
+    if: ${{ !cancelled() }}
+    needs: huskyci
+    runs-on: [self-hosted]
+    env: {}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Download SonarQube Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: sonarqube
+
+      - name: Debug SonarQube JSON File
+        if: ${{ !cancelled() }}
+        run: cat ./sonarqube.json
+
+      - name: Run SonarQube Scan
+        uses: sonarsource/sonarqube-scan-action@v3
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+        with:
+          args: >
+            -Dsonar.externalIssuesReportPaths=sonarqube.json
