@@ -1,0 +1,22 @@
+{
+  "name": "catalog-emit-consumer",
+  "version": "1.0.0",
+  "description": "“AWS Lambda function to consume messages from an SQS queue, fetch corresponding data from MongoDB, and store it in an S3 bucket.”",
+  "main": "index.mjs",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "aws-lambda",
+    "mongodb",
+    "s3",
+    "nodejs"
+  ],
+  "author": "Andre Luis da Cunha <andreluiscunha81@gmail.com> (https://github.com/andrelcunha)",
+  "license": "MIT",
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.515.0",
+    "dotenv": "^16.4.5",
+    "mongodb": "^6.3.0"
+  }
+}
